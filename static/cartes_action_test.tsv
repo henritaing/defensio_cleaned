@@ -1,0 +1,137 @@
+Choix	Oui_R	Oui_C	Oui_I 	Oui_D	Non_R	Non_C 	Non_I 	Non_D	feu	terre	eau	air	intro	outro	Score _R	Score_C	Score_I	bonus_oui_RCI	bonus_non_RCI
+Marier la princesse, fille du roi, avec un prince voisin pour établir une alliance avec un autre royaume 	15	10	-15	10	-10	-10	10	-10											
+Construire des routes pour faciliter le commerce	15	0	-15	10	-15	0	10	-10							+30 si oui		+30 si non	30,0,0	0,0,30
+Accueillir des rescapés 	15	-10	-15	10	-15	10	0	-10											
+Organiser une fête au château	10	15	-20	-5	0	-10	15	5											
+Mener des expéditions pour explorer des terres inconnues	10	10	-15	20	-10	-10	15	-20											
+Acheter un troupeau 	10	10	-5	-5	-20	-10	10	5											
+Envoyer des émissaires pour négocier des accords diplomatiques	10	0	-10	20	-10	0	5	-20											
+Accepter l'aide d'un sorcier	5	0	10	-15	-10	-5	-10	15											
+Créer une académie pour former de nouveaux talents	5	10	-10	10	-10	-10	10	-10											
+Élaborer des plans de défense en cas d'invasion	5	5	-10	10	-5	-5	10	-10											
+Créer une bibliothèque pour conserver le savoir	5	10	-10	20	-5	-10	10	-20											
+Favoriser le développement de l'agriculture	0	10	-10	5	0	-10	5	-5											
+Encourager la recherche scientifique et magique	0	10	-10	10	0	-10	15	-10											
+Augmenter le budget de l'armée	5	15	-15	-5	0	-10	15	5											
+Distribuer des rations aux pauvres	0	15	-10	10	0	-20	10	-10							+30 si non	+30 si oui		0,30,0	30,0,0
+Construire un nouvel hôpital	0	20	-20	10	0	-20	10	-10								+30 si oui	+30 si non	0,30,0	0,0,30
+Explorer des sources alternatives d'énergie	0	5	-20	20	0	-5	0	0											
+Soutenir des projets d'exploration spatiale	5	-10	-10	20	-5	0	0	0											
+Promouvoir le tourisme	10	-30	-10	30	-5	0	0	0											
+Mener des réformes fiscales pour baisser les impôts	-20	10	-20	30	5	-5	0	0											
+Se munir d'un pare feu 	0	5	-10	0	0	-5	15	0	3										
+Infrastructures sismiques	0	5	-10	0	0	-5	15	0		3									
+Digues	0	5	-10	0	0	-5	15	0			3								
+Isoler les murs 	0	5	-10	0	0	-5	15	0				3							
+Toît en pierre taillée 	0	10	-30	0	0	-5	20	0	2			2							
+Hermétiser les murs 	0	5	-10	0	0	-5	15	0			3								
+Technologie de ressorts anti-tremblement de terre	0	5	-10	0	0	-5	15	0		3									
+Charrettes à eau pour éteindre les incendies	0	5	-10	0	0	-5	15	0	3										
+Creuser un puit, réserve d'eau en cas d'incendie	5	0	-10	0	5	0	15	0	3										
+Creuser une cave profonde pour s'abriter	-10	10	-20	0	10	-15	10	0		1		2							
+Employer un donneur d'alerte	10	10	-40	0	-10	-20	10	0	2	1	1	1							
+Ajouter des étages aux bâtiments	10	-5	-10	0	-10	5	15	0			2								
+Employer un expert en séisme	10	-10	-10	0	-15	5	0	0		2									
+Employer un expert en inondation	10	-10	-10	0	-15	5	0	0			2								
+Employer un expert en tempête	10	-10	-10	0	-15	5	0	0				2							
+Employer un expert en incendie	10	-10	-10	0	-15	5	0	0	2										
+Reforcer les fondations des murs	5	5	-10	0	-10	-5	15	0				3							
+Creuser un système de drainage	5	5	-10	0	-5	-10	15	0			3								
+Distribuer des kits de survie aux séismes	5	5	-10	0	-10	-5	15	0		3									
+Fixer les meubles lourds au sol	10	0	-20	0	-20	-10	20	0		1		2							
+Signaler les issues de secours	10	0	-10	0	-20	0	15	0	2	1									
+Consolider les murailles	10	0	-10	0	-20	0	15	0			1	2							
+Investir dans l'éducation des femmes																			
+Développer le commerce maritime																			
+Trahir la reine																		skip ou rename	
+Trahir l'intendant																		skip ou rename	
+Trahir le conseiller																		skip ou rename	
+Améliorer les infrastructures de communication																			
+Ériger des monuments pour renforcer la réputation du royaume																			
+Organiser des tournois et des compétitions																			
+Développer des alliances avec des guildes ou des ordres																			
+Introduire une nouvelle monnaie																			
+Lancer des campagnes de publicité pour attirer des immigrants																			
+Changer la politique d'immigration																			
+Créer une garde royale																			
+Investir dans la recherche d'artefacts magiques																			
+Établir des politiques environnementales																			
+Promouvoir l'égalité des genres																			
+Favoriser le développement des arts et de la culture																			
+Lancer des projets de rénovation urbaine																			
+Encourager l'adoption de nouvelles technologies																			
+Organiser des jeux olympiques royaux																			
+Promouvoir la tolérance religieuse																			
+Établir des alliances matrimoniales avec des royaumes lointains																			
+Développer des compétences diplomatiques																			
+Lutter contre la corruption																			
+Investir dans la recherche médicale																			
+Ériger des statues en l'honneur de personnalités importantes																			
+Développer des réserves naturelles																			
+Soutenir des initiatives artistiques et créatives																			
+Organiser des foires et des marchés																			
+S'engager dans la piraterie pour affaiblir les ennemis maritimes																			
+Encourager la chasse aux monstres pour sécuriser les frontières																			
+Établir des alliances avec des créatures magiques																			
+Promouvoir la liberté de la presse																			
+Introduire des réformes judiciaires																			
+Établir des zones franches pour stimuler le commerce																			
+Lancer des programmes de protection de l'environnement																			
+Investir dans des projets d'énergie renouvelable																			
+Créer une académie militaire pour former de nouveaux officiers																			
+Organiser des tournois d'arts martiaux																			
+Renforcer les défenses frontalières																			
+Mener des expéditions pour découvrir de nouvelles ressources																			
+Élaborer des politiques de lutte contre la pauvreté																			
+Mettre en place des programmes de santé publique																			
+Construire des forts avancés pour consolider le territoire																			
+Éduquer la population sur les dangers magiques																			
+Encourager la recherche de remèdes magiques																			
+Créer une force d'élite pour des missions spéciales																			
+Organiser des festivals culturels																			
+Soutenir des initiatives artistiques et créatives																			
+Établir des partenariats avec des guildes d'artisans																			
+Favoriser le développement du commerce local																			
+Encourager la création de guildes marchandes																			
+Imposer des restrictions commerciales à certains royaumes																			
+Lancer des enquêtes sur des activités criminelles																			
+Établir des politiques sur la liberté d'expression																			
+Investir dans des infrastructures de transport modernes																			
+Créer des alliances avec des groupes rebelles																			
+Élaborer des politiques de protection des minorités																			
+Encourager l'immigration de travailleurs qualifiés																			
+Établir des alliances avec des créatures mythiques																			
+Promouvoir la coexistence pacifique avec des races non humaines																			
+Encourager la création de colonies à l'étranger																			
+Organiser des compétitions artistiques internationales																			
+Élaborer des politiques sur l'utilisation des artefacts magiques																			
+S'engager dans des missions de maintien de la paix																			
+Lancer des campagnes pour la sauvegarde d'espèces en voie de disparition																			
+Organiser des conférences internationales sur des sujets critiques																			
+Créer une cour royale pour la résolution des conflits																			
+									R	C	I	4							
+TOTAL	205	140	-530	215	-265	-220	410	-115	-60	-80	-120	100							
+									feu	terre	eau	air							
+Face aux incendies :									17	15	15	17							
+																			
+Tour de Guet Ignifugée : Une tour construite avec des matériaux ignifugés pour servir de poste d'observation en cas d'incendie.																			
+Puits Ignifugé : Un puits équipé de mécanismes spéciaux pour créer une réserve d'eau résistante au feu.																			
+Zone de Quarantaine : Un espace dégagé autour du château pour créer des zones tampons et empêcher la propagation rapide du feu.																			
+																			
+Face aux tempêtes :																			
+																			
+Renforcement des Toits : Utilisation de matériaux plus résistants et d'une structure renforcée pour les toits du château.																			
+Mur Coupe-Vent : Un mur bas construit autour des zones sensibles pour protéger contre les vents forts.																			
+Cave de Tempête : Une cave profonde conçue pour servir de refuge sûr pendant les tempêtes.																			
+																			
+Face aux séismes :																			
+																			
+Fondations Sismiques : Utilisation de techniques de construction spéciales pour renforcer les fondations du château.																			
+Salle de Sécurité : Une salle souterraine renforcée conçue pour servir de refuge en cas de tremblement de terre.																			
+Système d'Alerte Sismique : Un réseau de capteurs pour détecter les mouvements sismiques et donner l'alerte.																			
+																			
+Face aux inondations :																			
+																			
+Digues et Barrages : Construction de digues et de barrages le long des rivières pour prévenir les inondations.																			
+Puits de Drainage : Des puits spécialement conçus pour drainer l'eau loin du château.																			
+Étages Élevés : Construction de parties essentielles du château sur des étages plus élevés pour éviter les inondations.																			

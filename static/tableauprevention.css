@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f3ee;
+    display: flex;
+    flex-direction: column; /* Utiliser une disposition en colonne pour empiler les éléments verticalement */
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    overflow-y: hidden;
+}
+
+#flex-container-1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Aligner les éléments à chaque extrémité du conteneur */
+    width: 95%; 
+    padding: 1%; 
+}
+
+#label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+#input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+#button {
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}

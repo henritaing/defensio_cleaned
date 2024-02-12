@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Phase 2</title>
+</head>
+<body>
+
+    
+    <body class="bg-gray-200">
+        <div id="flex-container-1" class="flex-container">
+                <!-- Logo en haut à gauche -->
+                <img src="/static/logo.png" alt="Votre Logo" class="w-12 h-12">
+                <!-- Numéro du groupe en haut à droite -->
+                <div id="numberDisplay" class="text-xl font-bold"></div>
+           
+        </div>
+        
+        <div id="flex-container-2" class="flex-container">
+            <!-- Jauges -->    
+            <div>
+                <img src="/static/I.png" alt="Jauge I">
+                <div id="JaugeI"></div>
+            </div>
+            <div>
+                <img src="/static/R.png" alt="Jauge R">
+                <div id="JaugeR"></div>
+            </div>
+            <div>
+                <img src="/static/C.png" alt="Jauge C">
+                <div id="JaugeC"></div>
+            </div>
+            
+            
+            <div>
+                <img src="/static/Durabilité.png" alt="Jauge D">
+                <div id="JaugeD"></div>
+            </div>
+        </div>
+        
+        <div id="flex-container-3" class="flex-container">
+    
+            <div class="additional-containers">
+                <!-- Additional flex containers (4 in this example) -->
+                <div class="additional-container">Défense air</div>
+                <div class="additional-container">Défense eau</div>
+                <div class="additional-container">Défense feu</div>
+                <div class="additional-container">Défense terre</div>
+                
+            </div>
+            
+        </div>
+
+
+<script>
+    function getCookie(name) {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.indexOf(name + "=") === 0) {
+            return cookie.substring(name.length + 1);
+            }
+        }
+        return "";
+        };
+
+    var storedNumber = getCookie("number");
+    console.log(storedNumber)
+    document.getElementById('numberDisplay').innerText = `Équipe ${storedNumber}`;
+</script>
+
+<script>
+    let R, I, C, D;
+    function updateUI() {
+        // Update gauge values
+        document.getElementById('JaugeI').innerText = `Ressources : ${I}`;
+        document.getElementById('JaugeR').innerText = `Diplomatie : ${R}`;
+        document.getElementById('JaugeC').innerText = `Popularité : ${C}`;
+        document.getElementById('JaugeD').innerText = `Durabilité : ${D}`;
+        // Update defense values
+        const defenseAir = parseInt(airDefense);
+        const defenseEau = parseInt(waterDefense);
+        const defenseFeu = parseInt(fireDefense);
+        const defenseTerre = parseInt(earthDefense);
+        
+
+        document.getElementsByClassName('additional-container')[0].innerText = `Défense air: ${parseInt(defenseAir)}`;
+        document.getElementsByClassName('additional-container')[1].innerText = `Défense eau: ${parseInt(defenseEau)}`;
+        document.getElementsByClassName('additional-container')[2].innerText = `Défense feu: ${parseInt(defenseFeu)}`;
+        document.getElementsByClassName('additional-container')[3].innerText = `Défense terre: ${parseInt(defenseTerre)}`;
+        
+    }
+
+    fetch('/get-jauge/'+storedNumber)
+        .then(response => response.json())
+        .then(apidata => {
+            I=apidata.jauge_i;
+            R=apidata.jauge_r;
+            C=apidata.jauge_c;
+            D=apidata.jauge_d;
+            airDefense=apidata.air_defense;
+            waterDefense=apidata.water_defense;
+            fireDefense=apidata.fire_defense;
+            earthDefense=apidata.earth_defense;
+
+            updateUI();
+        });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+flask 
+flask_cors
+sqlitedict
+request
+pickle

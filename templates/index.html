@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Defensio</title>
+</head>
+
+    <body class="bg-gray-200">
+        <div id="flex-container-1" class="flex-container">
+                <!-- Logo en haut à gauche -->
+                <img src="/static/logo.png" alt="Votre Logo" class="w-12 h-12">
+                <!-- Timer -->
+                <div id="timer">Timer : <span id="countdown"></span></div>
+                <!-- Numéro du groupe en haut à droite -->
+                <div id="numberDisplay" class="text-xl font-bold"></div>
+        </div>
+    </div>
+
+    <div id="flex-container-2" class="flex-container">
+        <!-- Jauges -->    
+        <div>
+            <img src="/static/I.png" alt="Jauge I">
+            <div id="JaugeI"></div>
+        </div>
+        <div>
+            <img src="/static/R.png" alt="Jauge R">
+            <div id="JaugeR"></div>
+        </div>
+        <div>
+            <img src="/static/C.png" alt="Jauge C">
+            <div id="JaugeC"></div>
+        </div>
+    </div>
+    
+
+    <div id="flex-container-3" class="flex-container">
+        <div id="card-container" class="flex-container">
+    
+        </div>
+
+        <div class="additional-containers">
+            <!-- Additional flex containers (4 in this example) -->
+            <div class="additional-container">Défense air</div>
+            <div class="additional-container">Défense eau</div>
+            <div class="additional-container">Défense feu</div>
+            <div class="additional-container">Défense terre</div>
+        </div>
+    </div>
+
+    <script>
+        function getCookie(name) {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.indexOf(name + "=") === 0) {
+            return cookie.substring(name.length + 1);
+            }
+        }
+        return "";
+        };
+
+        var storedNumber = getCookie("number");
+        $("#numberDisplay").text("Équipe "+storedNumber);
+    </script>
+   
+   <script>
+    // Set the duration of the timer in seconds
+    const timerDuration = 720; // Change this value to the desired duration
+
+    let countdown = timerDuration;
+    let countdownInterval;
+
+    function startTimer() {
+    countdownInterval = setInterval(updateTimer, 1000);
+    }
+
+    function updateTimer() {
+    const timerElement = document.getElementById('countdown');
+
+    if (countdown > 0) {
+        countdown--;
+        timerElement.textContent = countdown;
+    } else {
+        clearInterval(countdownInterval);
+        // Timer is complete, transition to another page
+        showConfirmationMessage();
+    }
+    }
+
+    // Call startTimer() when you want to start the timer
+    // For example, call it when the 1st phase begins
+    startTimer();
+
+   </script>
+
+   <script>
+
+    function renderCard(card) {
+        const cardsContainer = document.getElementById('card-container');
+        cardsContainer.innerHTML = ''; // Clear previous card
+
+        // Create a container for card content
+        const cardContent = document.createElement('div');
+        cardContent.id = 'card-content';
+        cardContent.innerHTML = `
+            <p>${card.name}</p>
+        `;
+        cardsContainer.appendChild(cardContent);
+
+        // Create a container for columns
+        const columnsContainer = document.createElement('div');
+        columnsContainer.id = 'columns-container';
+        cardsContainer.appendChild(columnsContainer);
+
+        // Create left column
+        const leftColumn = document.createElement('div');
+        leftColumn.id = 'left-column';
+        leftColumn.innerHTML = `
+            <p>Si oui, les ressources : ${card.effect_yes_I}</p>
+            <p>Si oui, la diplomatie : ${card.effect_yes_R}</p>     
+            <p>Si oui, la popularité : ${card.effect_yes_C}</p>
+            
+        `;
+        columnsContainer.appendChild(leftColumn);
+
+        // Create right column
+        const rightColumn = document.createElement('div');
+        rightColumn.id = 'right-column';
+        rightColumn.innerHTML = `
+            <p>Défense air : + ${card.air_defense}</p>
+            <p>Défense eau : + ${card.water_defense}</p>
+            <p>Défense feu : + ${card.fire_defense}</p>
+            <p>Défense terre : + ${card.earth_defense}</p>
+            
+        `;
+        columnsContainer.appendChild(rightColumn);
+
+        // Create a container for buttons
+        const buttonContainer = document.createElement('div');
+        buttonContainer.id = 'button-container';
+        buttonContainer.innerHTML = `
+            <button class="action-button" onclick="handleCardChoice('yes')">Oui</button>
+            <button class="action-button" onclick="handleCardChoice('no')">Non</button>
+        `;
+        cardsContainer.appendChild(buttonContainer);
+
+        // Update UI elements
+        updateUI();
+    }
+
+
+
+    function handleCardChoice(choice) {
+        // Get the current card
+        const currentCard = cards[currentCardIndex];
+
+        // Apply effects based on the user's choice
+        if (choice === 'yes') {
+            I += currentCard.effect_yes_I;
+            R += currentCard.effect_yes_R;
+            C += currentCard.effect_yes_C;
+            D += currentCard.effect_yes_D;
+            airDefense = parseInt(airDefense) + currentCard.air_defense;
+            waterDefense = parseInt(waterDefense) + currentCard.water_defense;
+            fireDefense = parseInt(fireDefense) + currentCard.fire_defense;
+            earthDefense = parseInt(earthDefense) + currentCard.earth_defense;
+            updateMetrics(currentCard.effect_yes_I,
+                        currentCard.effect_yes_R,
+                        currentCard.effect_yes_C, 
+                        currentCard.effect_yes_D, 
+                        currentCard.bonus_oui_I,
+                        currentCard.bonus_oui_R,
+                        currentCard.bonus_oui_C,
+                        currentCard.air_defense,
+                        currentCard.water_defense,
+                        currentCard.fire_defense,
+                        currentCard.earth_defense,
+                        );
+            
+        } else if (choice === 'no') {
+            I += currentCard.effect_no_I;
+            R += currentCard.effect_no_R;
+            C += currentCard.effect_no_C;
+            D += currentCard.effect_no_D;
+            updateMetrics(currentCard.effect_no_I,
+                        currentCard.effect_no_R,
+                        currentCard.effect_no_C, 
+                        currentCard.effect_no_D, 
+                        currentCard.bonus_non_I,
+                        currentCard.bonus_non_R,
+                        currentCard.bonus_non_C,
+                        0, 0, 0);
+            
+        }
+
+        currentCardIndex++;
+
+        // Render the next card data
+        if (currentCardIndex < cards.length) {
+            renderCard(cards[currentCardIndex]);
+        } else {
+            // All cards have been displayed, you may want to handle this case
+            showConfirmationMessage();
+            console.log("All cards have been displayed");
+        }
+
+        // Update UI elements
+        updateUI();
+
+    }
+
+    function showConfirmationMessage() {
+    // Create a container div for the message and button
+    const confirmationContainer = document.createElement('div');
+    confirmationContainer.id = 'confirmation-container';
+
+    // Add the message
+    const confirmationMessage = document.createElement('p');
+    confirmationMessage.textContent = "Vous avez tiré toutes les cartes ou le temps s'est écoulé. Il est temps pour vous donc de passer au débrief 1 !";
+    confirmationContainer.appendChild(confirmationMessage);
+
+    // Add a button to confirm and navigate to the next page
+    const confirmButton = document.createElement('button');
+    confirmButton.textContent = 'Confirmer';
+    confirmButton.addEventListener('click', function () {
+        // Redirect to the next page with query parameters
+        const url = `/debrief1`;
+
+        // Redirect to debrief1.html with query parameters
+        window.location.href = url;
+    });
+    confirmationContainer.appendChild(confirmButton);   
+
+    // Style the container
+    confirmationContainer.style.position = 'fixed';
+    confirmationContainer.style.top = '0';
+    confirmationContainer.style.left = '0';
+    confirmationContainer.style.width = '100%';
+    confirmationContainer.style.background = '#f8d7da'; // Add your preferred background color
+    confirmationContainer.style.padding = '10px';
+    confirmationContainer.style.textAlign = 'center';
+
+    // Append the container to the body
+    document.body.appendChild(confirmationContainer);
+    }
+
+    function updateMetrics(i, r, c, d, bonus_i, bonus_r, bonus_c, ad, wd, fd, ed) {
+    const formData = {
+        jauge_i: i,
+        jauge_r: r,
+        jauge_c: c,
+        jauge_d: d,
+        bonus_c:bonus_c,
+        bonus_i:bonus_i,
+        bonus_r:bonus_r,
+        air_defense: ad, 
+        water_defense: wd,
+        fire_defense: fd,
+        earth_defense: ed,
+
+        timer_total:timerDuration-countdown
+    };
+
+    console.log('Sending PUT request with data:', formData);
+
+    fetch(`/put-jauge/${storedNumber}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+    })
+    .then(response => {
+        console.log('Received response:', response);
+        return response.json();
+    })
+    .then(data => {
+        console.log('Received JSON data:', data);
+    })
+    .catch(error => {
+        console.error('Error updating metrics:', error);
+    });
+}
+
+
+    function updateUI() {
+        // Update gauge values
+        document.getElementById('JaugeI').innerText = `Ressources : ${I}`;
+        document.getElementById('JaugeR').innerText = `Diplomatie : ${R}`;
+        document.getElementById('JaugeC').innerText = `Popularité : ${C}`;
+
+        // Update defense values
+        const defenseAir = parseInt(airDefense);
+        const defenseEau = parseInt(waterDefense);
+        const defenseFeu = parseInt(fireDefense);
+        const defenseTerre = parseInt(earthDefense);
+        
+        document.getElementsByClassName('additional-container')[0].innerText = `Défense air: ${parseInt(defenseAir)}`;
+        document.getElementsByClassName('additional-container')[1].innerText = `Défense eau: ${parseInt(defenseEau)}`;
+        document.getElementsByClassName('additional-container')[2].innerText = `Défense feu: ${parseInt(defenseFeu)}`;
+        document.getElementsByClassName('additional-container')[3].innerText = `Défense terre: ${parseInt(defenseTerre)}`;
+        
+    }
+        
+    // Initialize the variables
+    let I = 50;
+    let R = 50;
+    let C = 50;
+    let D = 0;
+    let compteur_cartes = 0;
+    let airDefense = 0;
+    let waterDefense = 0;
+    let fireDefense = 0;
+    let earthDefense = 0;
+   
+    let currentCardIndex = 0;
+    let data_unshuffled;
+    let cards;
+
+    fetch('/get-jauge/'+storedNumber)
+        .then(response => response.json())
+        .then(apidata => {
+            I=apidata.jauge_i;
+            R=apidata.jauge_r;
+            C=apidata.jauge_c;
+            D=apidata.jauge_d;
+            airDefense=apidata.air_defense;
+            waterDefense=apidata.water_defense;
+            fireDefense=apidata.fire_defense;
+            earthDefense=apidata.earth_defense;
+            compteur_cartes=api.compteur_cartes;
+
+            updateUI();
+        });
+
+    fetch('/api/cards')
+        .then(response => response.json())
+        .then(apidata => {
+            data_unshuffled = apidata;
+            cards = data_unshuffled.cards
+                .map(value => ({ value, sort: Math.random() }))
+                .sort((a, b) => a.sort - b.sort)
+                .map(({ value }) => value)
+            renderCard(cards[currentCardIndex]);
+        });
+</script>
+
+
+</body>
+</html>
+

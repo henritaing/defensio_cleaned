@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f3ee;
+    display: flex;
+    flex-direction: column; /* Utiliser une disposition en colonne pour empiler les éléments verticalement */
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    overflow-y: hidden;
+}
+
+#flex-container-1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Aligner les éléments à chaque extrémité du conteneur */
+    width: 95%; 
+    padding: 1%; 
+}
+
+#timer {
+    font-size: 18px;
+    margin: 10px;
+  }
+  
+
+/* Flex container pour aligner les images et les textes */
+#flex-container-2 {
+    display: flex;
+    align-items: center; /* Aligner les éléments verticalement au centre */
+    justify-content: space-around; /* Espacement équitable entre les éléments */
+}
+
+#flex-container-2 img {
+    max-width: 30%; 
+    height: auto; /* Garantit que les proportions de l'image sont conservées */
+}
+
+#flex-container-2 div {
+    text-align: center; /* Centre le texte */
+ 
+}
+
+
+#flex-container-3 {
+    display: flex;
+}
+
+#card-container {
+    padding: 20px;
+    margin-left: 22%; 
+    width: 550px; 
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre les éléments horizontalement dans le conteneur */
+    justify-content: space-between; /* Utilisez space-between pour positionner les boutons en bas */
+}
+
+#card-container #card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+#card-container p {
+    margin-bottom: 20px; /* Ajustez l'espace en bas du paragraphe */
+    font-size: 20px;
+    font-size: 1.2rem;
+}
+
+#columns-container {
+    display: flex;
+    justify-content: space-between;
+    width : 100%
+}
+
+#left-column,
+#right-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    line-height: 1.2;
+}
+
+#left-column p,
+#right-column p {
+    margin-bottom: 5%;
+    font-size: 1rem;
+    line-height:0%;
+}
+
+
+#card-container button {
+    padding: 5%;
+    margin: 5%; /* Espace autour des boutons */
+    cursor: pointer;
+}
+
+#button-container {
+    display: flex;
+    gap: 10px; 
+}
+
+#card-container .action-button {
+    padding: 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-family: Arial, sans-serif; 
+    font-size: 20px; 
+}
+
+.additional-containers {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left : 10%;
+}
+
+.additional-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px; /* Adjust as needed */
+}
+
+#numberDisplay {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+/* Ajouter du style pour votre logo */
+img {
+    width: 130px;
+    height: auto;
+}
+
+/* à rendre responsive */
