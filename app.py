@@ -19,10 +19,8 @@ import random as rd
 import csv
 import sqlite3
 import io
-from tqdm import tqdm
-import phases.first_phase       #on sait jamais de combien de librairies on a besoin
+from tqdm import tqdm   
 
-# Check for empty strings and convert to integers
 def convert_to_int(value):
     if value != '':
         return(int(value)) 
@@ -35,7 +33,6 @@ def convert_bonus_to_list(bonus):
     else:
         return([int(elt) for elt in bonus.split(',')])
 
-# Read TSV file and parse card data
 def read_card_data(file_path):
     cards = []
     with open(file_path, 'r', newline='', encoding='utf-8') as mycsv:
@@ -49,11 +46,11 @@ def read_card_data(file_path):
 
             card = {
                 'index': idx,
-                'name': row['Choix'],
-                'effect_yes_R':  convert_to_int(row['Oui_R']),
-                'effect_yes_C': convert_to_int(row['Oui_C']),
-                'effect_yes_I': convert_to_int(row['Oui_I ']),
-                'effect_yes_D': convert_to_int(row['Oui_D']),
+                'nom': row['Choix'],
+                'effet_Oui_R': convert_to_int(row['Oui_R']),
+                'effet_Oui_C': convert_to_int(row['Oui_C']),
+                'effet_Oui_I': convert_to_int(row['Oui_I ']),
+                'effet_Oui_D': convert_to_int(row['Oui_D']),
             
                 'effect_no_R': convert_to_int(row['Non_R']),
                 'effect_no_C': convert_to_int(row['Non_C ']),
@@ -75,9 +72,7 @@ def read_card_data(file_path):
 
                 'intro': row.get('intro', ''),
                 'outro': row.get('outro', ''),
-
             }
-
             cards.append(card)
     return cards
 
@@ -98,28 +93,19 @@ def create_app():
     @app.route('/')
     def login():
         return render_template("login.html")
-    
-    #tableauprevention
-    @app.route('/tableauprevention')
-    def tableauprevention():
-        return render_template("tableauprevention.html")
 
-    #débrief1
     @app.route('/debrief1')
     def debrief1():
         return render_template("debrief1.html")
     
-    #phase2
     @app.route('/second_phase')
     def second_phase():
         return render_template("second_phase.html")
-    
-    #débrief2
+
     @app.route('/debrief2')
     def debrief2():
         return render_template("debrief2.html")
 
-    #phase3/fin?
     @app.route('/third_phase')
     def third_phase():
         return render_template("third_phase.html")
@@ -150,9 +136,8 @@ def create_app():
             except:
                 None
         resp = jsonify(success=True)
-        return render_template("index.html")
+        return render_template("first_phase.html")
 
-    # Flask endpoint to serve card data
     @app.route('/api/cards')
     def get_cards():
         return jsonify({'cards': cards}) 

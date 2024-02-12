@@ -27,10 +27,10 @@ body {
 }
 
 .logo {
-    max-width: 20%; /* Le logo ne dépassera pas la largeur du conteneur */
-    height: auto; /* La hauteur s'ajustera proportionnellement à la largeur */
-    display: block; /* Pour résoudre les problèmes de marges autour de l'image */
-    margin: 0 auto; /* Centrer l'image horizontalement dans le conteneur */
+    max-width: 10%; 
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
 }
 
 form {
@@ -78,8 +78,6 @@ button:hover {
     max-height: 150px;
 }
 
-/* Animation */
-
 .parallax > use {
     animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
 }
@@ -113,7 +111,6 @@ button:hover {
     }
 }
 
-/* Shrinking for mobile */
 @media (max-width: 768px) {
     .waves {
         height: 40px;
