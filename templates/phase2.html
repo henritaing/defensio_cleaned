@@ -12,22 +12,14 @@
     
     <body class="bg-gray-200">
         <div id="flex-container-1" class="flex-container">
-                <!-- Logo en haut à gauche -->
                 <img src="/static/logo.png" alt="Votre Logo" class="w-12 h-12">
-                <!-- Timer -->
                 <div id="timer">Timer : <span id="countdown"></span></div>
-                <!-- Numéro du groupe en haut à droite -->
                 <div id="numberDisplay" class="text-xl font-bold"></div>
            
         </div>
     </div>
     
     <div id="flex-container-2" class="flex-container">
-        <!-- Jauges -->    
-        <div>
-            <img src="/static/I.png" alt="Jauge I">
-            <div id="JaugeI"></div>
-        </div>
         <div>
             <img src="/static/R.png" alt="Jauge R">
             <div id="JaugeR"></div>
@@ -37,20 +29,19 @@
             <img src="/static/C.png" alt="Jauge C">
             <div id="JaugeC"></div>
         </div>
-        
+        <div>
+            <img src="/static/I.png" alt="Jauge I">
+            <div id="JaugeI"></div>
+        </div>
     </div>
     
     <div id="flex-container-3" class="flex-container">
-
         <div class="additional-containers">
-            <!-- Additional flex containers (4 in this example) -->
-            <div class="additional-container">Défense air</div>
-            <div class="additional-container">Défense eau</div>
             <div class="additional-container">Défense feu</div>
             <div class="additional-container">Défense terre</div>
-            
+            <div class="additional-container">Défense eau</div>
+            <div class="additional-container">Défense air</div>
         </div>
-        
     </div>
 
     
@@ -59,19 +50,19 @@
         <p3>Echanges</p3>
         <div id="flex-container-5" class="flex-container">
             <select id="defense-left">
-                <option value="defense-air">Défense air</option>
-                <option value="defense-eau">Défense eau</option>
                 <option value="defense-feu">Défense feu</option>
                 <option value="defense-terre">Défense terre</option>
+                <option value="defense-eau">Défense eau</option>
+                <option value="defense-air">Défense air</option>
             </select>
     
             <span>Contre</span>
     
             <select id="defense-right">
-                <option value="defense-air">Défense air</option>
-                <option value="defense-eau">Défense eau</option>
                 <option value="defense-feu">Défense feu</option>
                 <option value="defense-terre">Défense terre</option>
+                <option value="defense-eau">Défense eau</option>
+                <option value="defense-air">Défense air</option>
             </select>
     
             <button id="submit-btn" onclick="exchange()">Soumettre</button>
@@ -80,10 +71,10 @@
         <div id="flex-container-6" class="flex-container">
             <p3>Donations</p3>
             <select id="defense-gifted">
-                <option value="defense-air">Défense air</option>
-                <option value="defense-eau">Défense eau</option>
                 <option value="defense-feu">Défense feu</option>
                 <option value="defense-terre">Défense terre</option>
+                <option value="defense-eau">Défense eau</option>
+                <option value="defense-air">Défense air</option>
             </select>
             
             <button id="submit-btn" onclick="donate()">Soumettre</button>
@@ -92,10 +83,10 @@
         <div id="flex-container-7" class="flex-container">
             <p3>Reçus</p3>
             <select id="defense-received">
-                <option value="defense-air">Défense air</option>
-                <option value="defense-eau">Défense eau</option>
                 <option value="defense-feu">Défense feu</option>
                 <option value="defense-terre">Défense terre</option>
+                <option value="defense-eau">Défense eau</option>
+                <option value="defense-air">Défense air</option>
             </select>
             
             <button id="submit-btn" onclick="receive()">Soumettre</button>
@@ -109,7 +100,7 @@
             var valueDefenseRight = document.getElementById("defense-right").value;
 
             if (valueDefenseLeft === valueDefenseRight) {
-                console.log("Cannot exchange between the same types.");
+                console.log("Pas d'échanges possibles avec le même type.");
                 return;
             }
 
@@ -117,10 +108,10 @@
 
             const formData = {
                 jauge_c: 5,
-                water_defense: 0,
-                earth_defense: 0,
-                fire_defense: 0,
-                air_defense: 0, 
+                defense_feu: 0,
+                defense_terre: 0,
+                defense_eau: 0,
+                defense_air: 0, 
             };
             
             if (valueDefenseLeft === "defense-terre") {

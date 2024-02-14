@@ -52,15 +52,15 @@ def read_card_data(file_path):
                 'effet_Oui_I': convert_to_int(row['Oui_I ']),
                 'effet_Oui_D': convert_to_int(row['Oui_D']),
             
-                'effect_no_R': convert_to_int(row['Non_R']),
-                'effect_no_C': convert_to_int(row['Non_C ']),
-                'effect_no_I': convert_to_int(row['Non_I ']),
-                'effect_no_D': convert_to_int(row['Non_D']),
+                'effet_non_R': convert_to_int(row['Non_R']),
+                'effet_non_C': convert_to_int(row['Non_C ']),
+                'effet_non_I': convert_to_int(row['Non_I ']),
+                'effet_non_D': convert_to_int(row['Non_D']),
 
-                'fire_defense': convert_to_int(row['feu']),
-                'earth_defense': convert_to_int(row['terre']),
-                'air_defense': convert_to_int(row['air']),
-                'water_defense': convert_to_int(row['eau']),
+                'defense_feu': convert_to_int(row['feu']),
+                'defense_terre': convert_to_int(row['terre']),
+                'defense_eau': convert_to_int(row['eau']),
+                'defense_air': convert_to_int(row['air']),
 
                 'bonus_oui_R': bonus_oui[0],
                 'bonus_oui_C': bonus_oui[1],
@@ -80,7 +80,6 @@ def create_app():
     from database.table import UserMetrics
     basedir = os.path.abspath(os.path.dirname(__file__))
 
-    #Generate the cards only once
     cards = read_card_data('./static/cartes_action_test.tsv')
 
     app = Flask(__name__)
@@ -98,17 +97,17 @@ def create_app():
     def debrief1():
         return render_template("debrief1.html")
     
-    @app.route('/second_phase')
-    def second_phase():
-        return render_template("second_phase.html")
+    @app.route('/phase2')
+    def phase2():
+        return render_template("phase2.html")
 
     @app.route('/debrief2')
     def debrief2():
         return render_template("debrief2.html")
 
-    @app.route('/third_phase')
-    def third_phase():
-        return render_template("third_phase.html")
+    @app.route('/phase3')
+    def phase3():
+        return render_template("phase3.html")
     
     @app.route('/session', methods=['POST'])
     def identification():
@@ -117,17 +116,17 @@ def create_app():
                 id = request.form.get('number')
                 nouvelles_metrics = UserMetrics(
                     id=int(id),
-                    jauge_i=50,
                     jauge_r=50,
                     jauge_c=50,
+                    jauge_i=50,
                     jauge_d=0, 
-                    bonus_i=0,
                     bonus_r=0,
-                    bonus_c=0,           
-                    air_defense=0,
-                    water_defense=0,
-                    earth_defense=0,
-                    fire_defense=0, 
+                    bonus_c=0,   
+                    bonus_i=0,
+                    defense_feu=0, 
+                    defense_terre=0,
+                    defense_eau=0,
+                    defense_air=0,
                     compteur_cartes=0, 
                     timer_total=0
                 )
@@ -136,7 +135,7 @@ def create_app():
             except:
                 None
         resp = jsonify(success=True)
-        return render_template("first_phase.html")
+        return render_template("phase1.html")
 
     @app.route('/api/cards')
     def get_cards():
@@ -149,17 +148,18 @@ def create_app():
     @app.route('/get-jauge/<user>')
     def getjauge(user):
         userMetrics = db.session.query(UserMetrics).get(user)
-        return jsonify({'jauge_c': userMetrics.jauge_c, 
-                        'jauge_i': userMetrics.jauge_i, 
+        return jsonify({
                         'jauge_r':userMetrics.jauge_r, 
+                        'jauge_c': userMetrics.jauge_c, 
+                        'jauge_i': userMetrics.jauge_i, 
                         'jauge_d':userMetrics.jauge_d, 
-                        'bonus_i':userMetrics.bonus_i,
                         'bonus_r':userMetrics.bonus_r,
-                        'bonus_c':userMetrics.bonus_c,  
-                        'water_defense':userMetrics.water_defense, 
-                        'earth_defense': userMetrics.earth_defense, 
-                        'air_defense':userMetrics.air_defense, 
-                        'fire_defense': userMetrics.fire_defense, 
+                        'bonus_c':userMetrics.bonus_c,
+                        'bonus_i':userMetrics.bonus_i,
+                        'defense_feu': userMetrics.defense_feu, 
+                        'defense_terre': userMetrics.defense_terre, 
+                        'defense_eau':userMetrics.defense_eau, 
+                        'defense_air':userMetrics.defense_air, 
                         'compteur_cartes':userMetrics.compteur_cartes, 
                         'timer_total':userMetrics.timer_total})
 
@@ -169,18 +169,18 @@ def create_app():
 
         if userMetrics:
             data = request.get_json()
-
-            userMetrics.jauge_i += data.get('jauge_i', 0)
+            
             userMetrics.jauge_r += data.get('jauge_r', 0)
             userMetrics.jauge_c += data.get('jauge_c', 0)
+            userMetrics.jauge_i += data.get('jauge_i', 0)
             userMetrics.jauge_d += data.get('jauge_d', 0)
-            userMetrics.bonus_i += data.get('bonus_i', 0)
             userMetrics.bonus_r += data.get('bonus_r', 0)
             userMetrics.bonus_c += data.get('bonus_c', 0)
-            userMetrics.water_defense += data.get('water_defense', 0)
-            userMetrics.earth_defense += data.get('earth_defense', 0)
-            userMetrics.fire_defense += data.get('fire_defense', 0)
-            userMetrics.air_defense += data.get('air_defense', 0)
+            userMetrics.bonus_i += data.get('bonus_i', 0)
+            userMetrics.defense_feu += data.get('defense_feu', 0)
+            userMetrics.defense_terre += data.get('defense_terre', 0)
+            userMetrics.defense_eau += data.get('defense_eau', 0)
+            userMetrics.defense_air += data.get('defense_air', 0)
 
             if 'timer_total' in data:
                 userMetrics.timer_total = data['timer_total']
@@ -188,7 +188,7 @@ def create_app():
 
             db.session.commit()
 
-            return jsonify({'message': 'UserMetrics updated successfully'})
+            return jsonify({'message': 'UserMetrics mis à jour'})
         else:
             return jsonify({'error': 'Utilisateur non trouvé'}), 404
 
@@ -197,19 +197,19 @@ def create_app():
         userMetrics = db.session.query(UserMetrics).get(user)
 
         if userMetrics:
-            userMetrics.jauge_i = 50
             userMetrics.jauge_r = 50
             userMetrics.jauge_c = 50
+            userMetrics.jauge_i = 50
             userMetrics.jauge_d = 0
-            userMetrics.air_defense=0
-            userMetrics.water_defense=0
-            userMetrics.earth_defense=0
-            userMetrics.fire_defense=0
+            userMetrics.defense_feu=0
+            userMetrics.defense_terre=0
+            userMetrics.defense_eau=0
+            userMetrics.defense_air=0
             userMetrics.compteur_cartes=0
             userMetrics.timer_total=0
             db.session.commit()
 
-            return jsonify({'message': 'UserMetrics updated successfully'})
+            return jsonify({'message': 'UserMetrics mis à jour'})
         else:
             return jsonify({'error': 'Utilisateur non trouvé'}), 404
     @app.route('/download_debrief1')

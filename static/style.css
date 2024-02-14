@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f7f3ee;
     display: flex;
-    flex-direction: column; /* Utiliser une disposition en colonne pour empiler les éléments verticalement */
+    flex-direction: column; 
     align-items: center;
     height: 100%;
     margin: 0;
@@ -12,7 +12,7 @@ body {
 #flex-container-1 {
     display: flex;
     flex-direction: row;
-    justify-content: space-between; /* Aligner les éléments à chaque extrémité du conteneur */
+    justify-content: space-between; 
     width: 95%; 
     padding: 1%; 
 }
@@ -23,23 +23,21 @@ body {
   }
   
 
-/* Flex container pour aligner les images et les textes */
 #flex-container-2 {
     display: flex;
-    align-items: center; /* Aligner les éléments verticalement au centre */
-    justify-content: space-around; /* Espacement équitable entre les éléments */
+    align-items: center; 
+    justify-content: space-around; 
 }
 
 #flex-container-2 img {
     max-width: 30%; 
-    height: auto; /* Garantit que les proportions de l'image sont conservées */
+    height: auto;
 }
 
 #flex-container-2 div {
-    text-align: center; /* Centre le texte */
+    text-align: center;
  
 }
-
 
 #flex-container-3 {
     display: flex;
@@ -52,8 +50,8 @@ body {
     height: 400px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centre les éléments horizontalement dans le conteneur */
-    justify-content: space-between; /* Utilisez space-between pour positionner les boutons en bas */
+    align-items: center; 
+    justify-content: space-between;
 }
 
 #card-container #card-content {
@@ -65,7 +63,7 @@ body {
 }
 
 #card-container p {
-    margin-bottom: 20px; /* Ajustez l'espace en bas du paragraphe */
+    margin-bottom: 20px;
     font-size: 20px;
     font-size: 1.2rem;
 }
@@ -95,7 +93,7 @@ body {
 
 #card-container button {
     padding: 5%;
-    margin: 5%; /* Espace autour des boutons */
+    margin: 5%; 
     cursor: pointer;
 }
 
